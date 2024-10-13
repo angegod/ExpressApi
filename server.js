@@ -187,7 +187,7 @@ app.get("/get/:uid",async (req,res)=>{
   let userId=req.params.uid;
 
   
-  res.setHeader('Access-Control-Allow-Origin','http://localhost:3000');//允許來源 
+  res.setHeader('Access-Control-Allow-Origin',"https://angegod.github.io");//允許來源 
   const request = await fetch(`https://api.mihomo.me/sr_info_parsed/${userId}?lang=cht`);
   const data = await request.json();
 
