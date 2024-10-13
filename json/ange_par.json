@@ -1,0 +1,81 @@
+{
+    "nextId": 7,
+    "content": [
+        {
+            "id": 2,
+            "author": "ange",
+            "title": "獨魂 第79回 聯手",
+            "createDate": "2024-07-25",
+            "content": [
+                {
+                    "char": "旁白",
+                    "content": "<p data-char=\"旁白\" data-color=\"#000000\"><strong>佑麻子等人經過三四個小時的行走之後來到另一山頂處，只看到一個男子正在奮力抵抗些甚麼。一旁的天神族長者看到阿卡薩的人類侵門踏戶的行為感到十分反感，儘管彼此沒有惡言相向，空氣中早已瀰漫起濃厚的火藥味。為了此行少出了三長兩短的差錯，佑麻子刻意走在最前方，試圖熄滅了雙方的仇恨。</strong></p>"
+                },
+                {
+                    "char": "佑麻子",
+                    "content": "<p data-char=\"佑麻子\" data-color=\"#be1e1e\"><strong>冷靜點，我們並沒有惡意。我只是想要找你們的首領談談......關於詛咒跟結界的事情!</strong></p>"
+                },
+                {
+                    "char": "旁白",
+                    "content": "<p data-char=\"旁白\" data-color=\"#000000\"><strong>聽到這兩個關鍵的詞語，在場的天神族人窸窸窣窣的討論。此時那個男人一張開口講話，其他天神族人都不敢有插嘴多話的行為。</strong></p>"
+                },
+                {
+                    "char": "unknown",
+                    "content": "<p data-char=\"unknown\" data-color=\"#ccaf1e\"><strong>找我……有何貴事?純零者!</strong></p>"
+                },
+                {
+                    "char": "旁白",
+                    "content": "<p data-char=\"旁白\" data-color=\"#000000\"><strong>只見一名男子暫時放下手上的事務，轉過身慢慢走向佑麻子面前，不過他似乎並不打算傷害眼前這位”純零者”</strong></p>"
+                },
+                {
+                    "char": "佑麻子",
+                    "content": "<p data-char=\"佑麻子\" data-color=\"#be1e1e\"><strong>你就是瓊邁口中所說的鐳門首領嗎?</strong></p>"
+                },
+                {
+                    "char": "鐳門",
+                    "content": "<p data-char=\"鐳門\" data-color=\"#d4d803\"><strong>是的，我就是本人，不過你們這麼大陣仗的上來，應該是要幹點大事，我如果有些太過於激烈的回應......想必你們早就做好準備了吧?說吧你們想要做甚麼事情，讓我來洗耳恭聽。</strong></p>"
+                }
+            ],
+            "nextCommentId": 1,
+            "comment": [],
+            "prefer": [
+                {
+                    "char": "旁白",
+                    "color": "#000000"
+                },
+                {
+                    "char": "佑麻子",
+                    "color": "#be1e1e"
+                },
+                {
+                    "char": "unknown",
+                    "color": "#ccaf1e"
+                },
+                {
+                    "char": "鐳門",
+                    "color": "#d4d803"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "author": "ange",
+            "title": "測試文章標題",
+            "createDate": "2024-07-30",
+            "content": [
+                {
+                    "char": "旁白",
+                    "content": "<p data-char=\"旁白\" data-color=\"#000000\"><strong>在場所有人轉眼間都來到了某處上方，俯瞰著下方過往人民的作為。眾人剛好目睹到隆虎的前世白堊跟采上的前世盤古一同放逐了大部分的天神族人後雙雙殞落之一幕。而在殞落之處卻還有一群人，各個都穿著黑袍，神秘感早已拉滿。這段過去對於在場大多數旁觀者而言都非常陌生，於是他們選擇靜靜地看蘇瑞恩想要表達些甚麼……。</strong></p>"
+                }
+            ],
+            "nextCommentId": 1,
+            "comment": [],
+            "prefer": [
+                {
+                    "char": "旁白",
+                    "color": "#000000"
+                }
+            ]
+        }
+    ]
+}
