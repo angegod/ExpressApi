@@ -184,10 +184,18 @@ app.get("/",(req, res) => {
 });
 
 app.get("/get/:uid",async (req,res)=>{
+  const origin = req.headers.origin;
+  const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
   let userId=req.params.uid;
 
   
-  res.setHeader('Access-Control-Allow-Origin',"https://angegod.github.io");//允許來源 
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin); // 允許該來源
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', ''); // 拒絕該來源
+  }
+
+
   const request = await fetch(`https://api.mihomo.me/sr_info_parsed/${userId}?lang=cht`);
   const data = await request.json();
 

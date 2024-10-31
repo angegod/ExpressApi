@@ -96,6 +96,17 @@ app.get('/get/ball',async(req,res)=>{
   res.send(JSON.stringify(data.data));
 })
 
+app.get('/get/stock',async(req,res)=>{
+  res.setHeader('Access-Control-Allow-Origin','*');/*允許來源 */
+  axios.post(`https://www.esunbank.com/api/client/ExchangeRate/LastRateInfo?sc_lang=zh-TW`)
+  .then((response)=>{
+    const data = response.data
+
+    res.send(JSON.stringify(data));
+  });
+  
+})
+
 app.listen(5000, () => {
   console.log(`Server is running on port 5000.`);
 });

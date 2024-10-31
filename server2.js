@@ -350,9 +350,57 @@ app.post('/card/image',async(req, res,next) => {
               message: 'File uploaded successfully'
             });
         })
-    });
-    
+    });    
+});
+
+const storage3 = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const absolutePath='C:/xampp/htdocs/vue/vuepage/public/images/card/spread';
+        
+        cb(null, absolutePath); // 设置文件存储的目录
+    },
+    filename: function (req, file, cb) {
+      const customFileName = file.originalname.split('.')[0]; 
+      const finalPath = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/spread', customFileName+'.png');
+      console.log('File save:'+finalPath);
+      cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+    }
   });
+  
+const upload3 = multer({ storage:storage3 });
+  
+//上傳盤面圖  
+app.post('/card/spread',async(req, res,next) => {
+    // 先保存自定义字段到临时变量
+  
+    let oldName='';
+    let newName='';
+    //tempFileName = req.body.jsondata;
+    upload3.single('image')(req, res, function (err) {
+        console.log('Form fields:', req.body.oldName);
+        oldName=req.body.oldName+'.png';
+        newName=req.body.newName+'.png';
+  
+        if (err) {
+          return res.status(500).json({ message: 'Upload failed', error: err.message });
+        }
+        const absolutePath='C:/xampp/htdocs/vue/vuepage/public/images/card/spread'
+        const oldPath = absolutePath +'/'+oldName;
+        const newPath = absolutePath +'/'+newName;
+  
+        //用fs修改檔名 抓取舊檔名跟新檔名
+        fs.rename(oldPath,newPath,(err)=>{
+            if (err) {
+              console.error('Error renaming file:', err);
+              return res.status(500).json({ message: 'Failed to rename file' });
+            }
+            res.json({
+              message: 'File uploaded successfully'
+            });
+        })
+    });    
+});
+
 
 //調整序位
 function modifyFunc(funcData){

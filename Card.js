@@ -22,7 +22,7 @@ let Card = [
         "tag": [
           2,
           18,
-          27
+          28
         ],
         "fullimage": "/images/card/image/1_1.png",
         "keyword": []
@@ -46,7 +46,7 @@ let Card = [
         "tag": [
           7,
           18,
-          27
+          28
         ],
         "fullimage": "/images/card/image/1_2.png"
       },
@@ -69,7 +69,7 @@ let Card = [
         "tag": [
           1,
           18,
-          27
+          28
         ],
         "fullimage": "/images/card/image/1_3.png"
       },
@@ -93,7 +93,10 @@ let Card = [
           19,
           20
         ],
-        "fullimage": "/images/card/image/1_4.png"
+        "fullimage": "/images/card/image/1_4.png",
+        "keyword": [
+          "全補"
+        ]
       },
       {
         "id": 5,
@@ -115,8 +118,8 @@ let Card = [
         "tag": [
           2,
           15,
-          41,
-          50
+          47,
+          56
         ],
         "fullimage": "/images/card/image/1_5.png"
       },
@@ -141,7 +144,7 @@ let Card = [
           7,
           15,
           18,
-          37
+          43
         ],
         "fullimage": "/images/card/image/1_6.png"
       },
@@ -165,8 +168,8 @@ let Card = [
         "tag": [
           7,
           15,
-          40,
-          50
+          46,
+          56
         ],
         "fullimage": "/images/card/image/1_7.png"
       },
@@ -190,8 +193,8 @@ let Card = [
         "tag": [
           1,
           15,
-          36,
-          51
+          42,
+          57
         ],
         "fullimage": "/images/card/image/1_8.png"
       },
@@ -215,8 +218,8 @@ let Card = [
         "tag": [
           15,
           21,
-          27,
-          51
+          28,
+          57
         ],
         "fullimage": "/images/card/image/1_9.png",
         "keyword": [
@@ -244,9 +247,9 @@ let Card = [
         "tag": [
           8,
           18,
-          22,
-          43,
-          55
+          23,
+          49,
+          61
         ],
         "fullimage": "/images/card/image/1_10.png",
         "keyword": [
@@ -270,9 +273,9 @@ let Card = [
         "PointConsume": 4,
         "PointGet": 2,
         "tag": [
-          27,
-          42,
-          56
+          28,
+          48,
+          62
         ],
         "fullimage": "/images/card/image/1_11.png"
       },
@@ -294,8 +297,8 @@ let Card = [
         "PointGet": 2,
         "tag": [
           3,
-          27,
-          58
+          28,
+          64
         ],
         "fullimage": "/images/card/image/1_12.png"
       },
@@ -316,9 +319,9 @@ let Card = [
         "PointConsume": 4,
         "PointGet": 2,
         "tag": [
-          27,
-          40,
-          59
+          28,
+          46,
+          65
         ],
         "fullimage": "/images/card/image/1_13.png"
       },
@@ -342,9 +345,9 @@ let Card = [
         "tag": [
           3,
           9,
-          27,
-          32,
-          38
+          28,
+          33,
+          44
         ],
         "fullimage": "/images/card/image/1_14.png",
         "keyword": [
@@ -370,10 +373,10 @@ let Card = [
         "PointGet": 2,
         "tag": [
           1,
-          27,
-          31,
-          48,
-          53
+          28,
+          32,
+          54,
+          54
         ],
         "fullimage": "/images/card/image/1_15.png",
         "keyword": [
@@ -402,8 +405,8 @@ let Card = [
           1,
           10,
           18,
-          22,
-          37
+          23,
+          43
         ],
         "fullimage": "/images/card/image/1_16.png",
         "keyword": [
@@ -431,7 +434,7 @@ let Card = [
           1,
           11,
           15,
-          45
+          51
         ],
         "fullimage": "/images/card/image/1_17.png"
       },
@@ -455,8 +458,8 @@ let Card = [
         "tag": [
           7,
           16,
-          48,
-          54
+          54,
+          60
         ],
         "fullimage": "/images/card/image/1_18.png",
         "keyword": [
@@ -482,7 +485,7 @@ let Card = [
         "tag": [
           7,
           17,
-          27
+          28
         ],
         "fullimage": "/images/card/image/1_19.png",
         "keyword": [
@@ -512,14 +515,18 @@ let Card = [
           2,
           12,
           18,
-          22,
-          52,
-          60
+          23,
+          58,
+          66
         ],
         "fullimage": "/images/card/image/1_20.png",
         "keyword": [
           "蚩尤"
-        ]
+        ],
+        "spread":{
+          "image":"/images/card/spread/20.png",
+          "index": 2
+        }
       },
       {
         "id": 21,
@@ -540,7 +547,7 @@ let Card = [
         "tag": [
           10,
           18,
-          25
+          26
         ],
         "fullimage": "/images/card/image/1_21.png"
       },
@@ -563,7 +570,7 @@ let Card = [
         "tag": [
           3,
           18,
-          26
+          27
         ],
         "fullimage": "/images/card/image/1_21.png"
       },
@@ -587,8 +594,8 @@ let Card = [
         "tag": [
           9,
           14,
-          23,
-          52
+          24,
+          58
         ],
         "fullimage": "/images/card/image/1_23.png"
       },
@@ -616,7 +623,7 @@ let Card = [
           3,
           18,
           21,
-          27,
+          28,
           28
         ],
         "fullimage": "/images/card/image/1_24.png",
@@ -647,9 +654,9 @@ let Card = [
           2,
           10,
           18,
-          27,
-          29,
-          35
+          28,
+          30,
+          36
         ],
         "fullimage": "/images/card/image/1_25.png",
         "keyword": [
@@ -677,19 +684,104 @@ let Card = [
         "PointGet": 2,
         "tag": [
           4,
-          4,
+          5,
           6,
-          6,
+          7,
           8,
           13,
           18,
-          22,
-          39
+          23,
+          45
         ],
         "fullimage": "/images/card/image/1_26.png",
         "keyword": [
           "拉普牌"
         ]
+      },
+      {
+        "id": 27,
+        "name": "冷冽談判",
+        "rarity": 2,
+        "image": "/images/card/icon/1_27.png",
+        "instantEffect": "發動攻擊前自身對敵方全體造成 50000000 點無屬性傷害 10 次",
+        "roundEffect": [
+          "無視「燃燒」",
+          "迴避每個敵人的首次攻擊"
+        ],
+        "comboEffect": [
+          "自身無視「指定形狀盾」",
+          "自身攻擊力提升 100%"
+        ],
+        "PointMax": 6,
+        "PointEnter": 6,
+        "PointConsume": 2,
+        "PointGet": 2,
+        "tag": [
+          1,
+          17,
+          18,
+          22,
+          56
+        ],
+        "fullimage": "/images/card/image/1_27.png",
+        "keyword": []
+      },
+      {
+        "id": 28,
+        "name": "難以割離的念想",
+        "rarity": 1,
+        "image": "/images/card/icon/1_28.png",
+        "instantEffect": "完全回復生命力",
+        "roundEffect": [
+          "將自身直行的符石轉化為光符石"
+        ],
+        "comboEffect": [
+          "回合結束時， 將單數直行的符石轉化為木強化符石， 將雙數直行的符石轉化為光強化符石"
+        ],
+        "PointMax": 4,
+        "PointEnter": 4,
+        "PointConsume": 1,
+        "PointGet": 2,
+        "tag": [
+          20,
+          64,
+          66
+        ],
+        "fullimage": "/images/card/image/1_28.png",
+        "keyword": [
+          "全補",
+          "方荼"
+        ],
+        "spread":{
+          "image":"/images/card/spread/28.png",
+          "index": 1
+        }
+      },
+      {
+        "id": 29,
+        "name": "同盟破敵的決意",
+        "rarity": 2,
+        "image": "/images/card/icon/1_29.png",
+        "instantEffect": "提升 100% 龍脈儀能量",
+        "roundEffect": [
+          "所有成員以 50% 攻擊力追打光屬性攻擊 2 次",
+          "所有成員以 50% 攻擊力追打火屬性攻擊 2 次"
+        ],
+        "comboEffect": [
+          "自身無視「連擊相等盾」"
+        ],
+        "PointMax": 6,
+        "PointEnter": 6,
+        "PointConsume": 3,
+        "PointGet": 2,
+        "tag": [
+          3,
+          16,
+          50,
+          52
+        ],
+        "fullimage": "/images/card/image/1_29.png",
+        "keyword": []
       }
     ]
   }
