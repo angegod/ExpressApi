@@ -261,10 +261,24 @@ const storage = multer.diskStorage({
         cb(null, absolutePath); // 设置文件存储的目录
     },
     filename: function (req, file, cb) {
-      const customFileName = file.originalname.split('.')[0]; 
-      const finalPath = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/icon', customFileName+'.png');
-      console.log('File save:'+finalPath);
-      cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+        const customFileName = file.originalname.split('.')[0]; 
+        const baseDir = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/icon');
+        const finalPath = path.join(baseDir, customFileName + '.png');
+        const normalizedPath = path.normalize(finalPath);
+
+        // 驗證 finalPath 是否在 baseDir 中
+        if (!normalizedPath.startsWith(baseDir)) {
+            throw new Error('Invalid file path');
+        }else{
+            console.log('File save:'+finalPath);
+            cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+        }
+
+
+
+        
+       
+       
     }
   });
   
@@ -312,10 +326,18 @@ app.post('/card/icon',async(req, res,next) => {
         cb(null, absolutePath); // 设置文件存储的目录
     },
     filename: function (req, file, cb) {
-      const customFileName = file.originalname.split('.')[0]; 
-      const finalPath = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/image', customFileName+'.png');
-      console.log('File save:'+finalPath);
-      cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+        const customFileName = file.originalname.split('.')[0]; 
+        const baseDir = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/image');
+        const finalPath = path.join(baseDir, customFileName + '.png');
+        const normalizedPath = path.normalize(finalPath);
+
+        // 驗證 finalPath 是否在 baseDir 中
+        if (!normalizedPath.startsWith(baseDir)) {
+            throw new Error('Invalid file path');
+        }else{
+            console.log('File save:'+finalPath);
+            cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+        }
     }
   });
   
@@ -360,10 +382,18 @@ const storage3 = multer.diskStorage({
         cb(null, absolutePath); // 设置文件存储的目录
     },
     filename: function (req, file, cb) {
-      const customFileName = file.originalname.split('.')[0]; 
-      const finalPath = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/spread', customFileName+'.png');
-      console.log('File save:'+finalPath);
-      cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+        const customFileName = file.originalname.split('.')[0]; 
+        const baseDir = path.join('C:/xampp/htdocs/vue/vuepage/public/images/card/spread');
+        const finalPath = path.join(baseDir, customFileName + '.png');
+        const normalizedPath = path.normalize(finalPath);
+
+        // 驗證 finalPath 是否在 baseDir 中
+        if (!normalizedPath.startsWith(baseDir)) {
+            throw new Error('Invalid file path');
+        }else{
+            console.log('File save:'+finalPath);
+            cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
+        }
     }
   });
   
