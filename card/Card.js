@@ -19,7 +19,7 @@ let Card = [
         ],
         "PointMax": 4,
         "PointEnter": 4,
-        "PointConsume": 4,
+        "PointConsume": 2,
         "PointGet": 2,
         "tag": [
           2,
@@ -547,8 +547,8 @@ let Card = [
           "自身攻擊力提升 100%",
           "回合結束時，將單數直行的符石轉化為暗強化符石，將雙數直行的符石轉化為火強化符石"
         ],
-        "PointMax": 4,
-        "PointEnter": 4,
+        "PointMax": 8,
+        "PointEnter": 8,
         "PointConsume": 2,
         "PointGet": 2,
         "tag": [
@@ -564,7 +564,7 @@ let Card = [
           "蚩尤"
         ],
         "spread": {
-          "image": "/images/card/spread/20.png",
+          "image": "/images/card/spread/1_20.png",
           "index": 2
         }
       },
@@ -672,7 +672,7 @@ let Card = [
           18,
           21,
           29,
-          28
+          30
         ],
         "fullimage": "/images/card/image/1_24.png",
         "keyword": [
@@ -730,9 +730,9 @@ let Card = [
           "自身攻擊力提升 100%",
           "自身無視「十字限盾」"
         ],
-        "PointMax": 4,
-        "PointEnter": 4,
-        "PointConsume": 2,
+        "PointMax": 8,
+        "PointEnter": 8,
+        "PointConsume": 4,
         "PointGet": 2,
         "tag": [
           4,
@@ -809,7 +809,7 @@ let Card = [
           "方荼"
         ],
         "spread": {
-          "image": "/images/card/spread/28.png",
+          "image": "/images/card/spread/1_28.png",
           "index": 1
         }
       },
@@ -901,7 +901,7 @@ let Card = [
         "fullimage": "/images/card/image/1_31.png",
         "keyword": [],
         "spread": {
-          "image": "/images/card/spread/31.png",
+          "image": "/images/card/spread/1_31.png",
           "index": 1
         }
       },
@@ -942,4 +942,5 @@ let Card = [
     ]
   }
 ] ;
-module.exports = Card;
+
+module.exports=Card;

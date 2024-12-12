@@ -459,7 +459,6 @@ function modifyCard(array,Card){
             array.forEach((m)=>{
                 //如果卡片標籤有自更動過編號 且先前沒有更動紀錄
                 if(c.tag.includes(m[0])&&!modfiedNum.includes(m[0])){
-                    //console.log(`編號${c.id} 更動:${c.tag[c.tag.findIndex((t)=>t===m[0])]}->${m[1]}`);
                     c.tag[c.tag.findIndex((t)=>t===m[0])]=m[1];
                     modfiedNum.push(m[1]);//告訴系統說這個數字已經更改過了
                 }
