@@ -49,7 +49,7 @@ app.get("/get/:uid",async (req,res)=>{
 
 app.post("/relic/get",async(req,res)=>{
     //const origin = req.headers.origin;
-    /*const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
+    const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
     
     
     if (allowedOrigins.includes(origin)) {
@@ -57,7 +57,7 @@ app.post("/relic/get",async(req,res)=>{
     } else {
       res.setHeader('Access-Control-Allow-Origin', ''); // 拒絕該來源
       return res.status(403).send({ error: "Forbidden" }); // 提前返回
-    }*/
+    }
     let senddata = req.body;
     let userId=senddata.uid;
     let partsIndex=senddata.partsIndex;
