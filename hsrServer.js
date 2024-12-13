@@ -4,19 +4,16 @@ const cors=require('cors');
 
 const app = express();
 
-const corsOptions={
-  origin:[
-    'https://angegod.github.io/'
-  ],
-  methods:'GET,POST,PUT,DELETE',
-  allowHeaders:['Access-Control-Allow-Origin','Content-Type'],
-  optionsSuccessStatus: 200 
+// Define the CORS options
+const corsOptions = {
+  credentials: true,
+  origin: ['http://localhost:3000', 'http://localhost:80'] // Whitelist the domains you want to allow
 };
+
+app.use(cors(corsOptions)); // Use the cors middleware with your options
 
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // 處理所有路徑的預檢請求
 
 
 app.get("/get/:uid",async (req,res)=>{
