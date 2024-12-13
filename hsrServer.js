@@ -16,6 +16,20 @@ app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post reques
 app.use(bodyParser.json()); //Handles JSON requests
 
 
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    
+    if (req.method === 'OPTIONS') {
+      return res.status(204).send();
+    }
+    next();
+});
+
 app.get("/get/:uid",async (req,res)=>{
     const origin = req.headers.origin;
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
@@ -45,16 +59,8 @@ app.post("/relic/get",async(req,res)=>{
     const origin = req.headers.origin;
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
     
-    
-    if (allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin); // 允許該來源
-        
-        res.setHeader('Access-Control-Allow-Methods', 'POST'); // 允許的方法
-        res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // 允許的標頭
-    }else {
-        res.setHeader('Access-Control-Allow-Origin', ''); // 拒絕該來源
-        return res.status(403).send({ error: "Forbidden" }); // 提前返回
-    }
+    res.setHeader('Access-Control-Allow-Origin', '*'); // 允許該來源
+
     let senddata = req.body;
     let userId=senddata.uid;
     let partsIndex=senddata.partsIndex;
