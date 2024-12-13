@@ -5,12 +5,12 @@ const cors=require('cors');
 const app = express();
 
 // Define the CORS options
-const corsOptions = {
-  credentials: true,
-  origin: ['http://localhost:3000', 'http://localhost:80'] // Whitelist the domains you want to allow
-};
+var corsOptions = {
+  origin: 'https://angegod.github.io/',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
-app.use(cors(corsOptions)); // Use the cors middleware with your options
+
 
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
@@ -43,7 +43,7 @@ app.get("/get/:uid",async (req,res)=>{
   
 });
 
-app.post("/relic/get",async(req,res)=>{
+app.post("/relic/get",cors(corsOptions),async(req,res)=>{
     
     const origin = req.headers.origin;
     console.log(origin);
