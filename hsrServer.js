@@ -15,7 +15,11 @@ var corsOptions = {
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
 
-const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 app.get("/get/:uid",async (req,res)=>{
