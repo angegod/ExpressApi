@@ -18,7 +18,7 @@ const corsOptions={
 
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 
