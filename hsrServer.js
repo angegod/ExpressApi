@@ -16,20 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post reques
 app.use(bodyParser.json()); //Handles JSON requests
 
 const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    console.log(origin);
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    
-    if (req.method === 'OPTIONS') {
-      return res.status(204).send();
-    }
-    next();
-});
+
 
 app.get("/get/:uid",async (req,res)=>{
     const origin = req.headers.origin;
@@ -57,11 +44,16 @@ app.get("/get/:uid",async (req,res)=>{
 });
 
 app.post("/relic/get",async(req,res)=>{
-    console.log(origin);
+    
     const origin = req.headers.origin;
+    console.log(origin);
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
     
-    res.setHeader('Access-Control-Allow-Origin', '*'); // 允許該來源
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     let senddata = req.body;
     let userId=senddata.uid;
