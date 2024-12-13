@@ -6,7 +6,7 @@ const app = express();
 
 // Define the CORS options
 var corsOptions = {
-  origin: 'https://angegod.github.io/',
+  origin: 'https://angegod.github.io',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
