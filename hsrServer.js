@@ -15,7 +15,7 @@ app.use(cors(corsOptions)); // Use the cors middleware with your options
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
 
-
+const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
 app.use((req, res, next) => {
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
