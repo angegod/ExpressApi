@@ -18,6 +18,7 @@ app.use(bodyParser.json()); //Handles JSON requests
 const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
 app.use((req, res, next) => {
     const origin = req.headers.origin;
+    console.log(origin);
     if (allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
     }
@@ -56,6 +57,7 @@ app.get("/get/:uid",async (req,res)=>{
 });
 
 app.post("/relic/get",async(req,res)=>{
+    console.log(origin);
     const origin = req.headers.origin;
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
     
