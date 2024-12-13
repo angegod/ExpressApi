@@ -1,9 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const jsonfile=require('./json/product1.json');
 const cors=require('cors');
-const fs=require('fs');
-const axios=require('axios');
 
 const app = express();
 
@@ -48,15 +45,15 @@ app.get("/get/:uid",async (req,res)=>{
 });
 
 app.post("/relic/get",async(req,res)=>{
-    //const origin = req.headers.origin;
+    const origin = req.headers.origin;
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
     
     
     if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin); // 允許該來源
-    } else {
-      res.setHeader('Access-Control-Allow-Origin', ''); // 拒絕該來源
-      return res.status(403).send({ error: "Forbidden" }); // 提前返回
+        res.setHeader('Access-Control-Allow-Origin', origin); // 允許該來源
+    }else {
+        res.setHeader('Access-Control-Allow-Origin', ''); // 拒絕該來源
+        return res.status(403).send({ error: "Forbidden" }); // 提前返回
     }
     let senddata = req.body;
     let userId=senddata.uid;
