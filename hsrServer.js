@@ -16,12 +16,7 @@ const corsOptions={
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
 app.use(cors(corsOptions));
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.options('*', cors(corsOptions)); // 處理所有路徑的預檢請求
 
 
 app.get("/get/:uid",async (req,res)=>{
