@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post reques
 app.use(bodyParser.json()); //Handles JSON requests
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 
@@ -50,7 +50,6 @@ app.get("/get/:uid",async (req,res)=>{
 app.post("/relic/get",cors(corsOptions),async(req,res)=>{
     
     const origin = req.headers.origin;
-    console.log(origin);
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
     
     if (allowedOrigins.includes(origin)) {
