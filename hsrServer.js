@@ -85,6 +85,10 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
         let targetRelic=taregtChar.relics.find((r)=>r.type===Number(partsIndex));
         if(targetRelic===undefined)
             res.send('801');
+        else if(targetRelic.rarity!==5)
+            res.send('803');
+        else if(targetRelic.level!==15)
+            res.send('802');
         else
             res.send(targetRelic);
     }
