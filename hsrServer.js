@@ -12,7 +12,7 @@ var corsOptions = {
 }
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 分鐘
-    max: 50, // 限制每個 IP 在 15 分鐘內最多請求 50 次
+    max: 5, // 限制每個 IP 在 15 分鐘內最多請求 50 次
     standardHeaders: true, // 在 response header 顯示 RateLimit 限制
     legacyHeaders: false, // 不使用 `X-RateLimit-*` headers
     handler: (req, res) => {
