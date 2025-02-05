@@ -274,13 +274,8 @@ const storage = multer.diskStorage({
             cb(null, customFileName + '.png'); // 最终文件名 = 自定义名 + 扩展名
         }
 
-
-
-        
-       
-       
     }
-  });
+});
   
 const upload = multer({ storage:storage });
   
