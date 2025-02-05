@@ -17,9 +17,9 @@ const limiter = rateLimit({
     legacyHeaders: false, // 不使用 `X-RateLimit-*` headers
     handler: (req, res) => {
       // **在429回應時加入 CORS headers**
-      res.setHeader('Access-Control-Allow-Origin', '*'); // 或改成你的前端域名
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE,OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   
       res.status(429).json({
         success: false,
