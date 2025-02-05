@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors=require('cors');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 
@@ -9,16 +10,39 @@ var corsOptions = {
   origin: 'https://angegod.github.io',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-
-
-
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 分鐘
+    max: 2, // 限制每個 IP 在 15 分鐘內最多請求 30 次
+    standardHeaders: true, // 在 response header 顯示 RateLimit 限制
+    legacyHeaders: false, // 不使用 `X-RateLimit-*` headers
+    handler: (req, res) => {
+      // **在429回應時加入 CORS headers**
+      res.setHeader('Access-Control-Allow-Origin', '*'); // 或改成你的前端域名
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE,OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+      res.status(429).json({
+        success: false,
+        error: '請求過於頻繁，請稍後再試。',
+      });
+    },
+  });
+  
+// 套用到所有路由
 app.use(bodyParser.urlencoded({ extended: true })); //Handles normal post requests
 app.use(bodyParser.json()); //Handles JSON requests
 
+//如果是預檢請求，則跳過頻率檢測
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+    //res.header("Access-Control-Allow-Origin", "*");
+    
+    if (req.method === 'OPTIONS') {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      return res.sendStatus(200);
+    }
+    return limiter(req, res, next);
 });
 
 
