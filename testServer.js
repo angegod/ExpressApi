@@ -77,7 +77,6 @@ const database=()=>{
           
         
     };
-
     const addCard = async (data)=>{
         const Insertkeyword = (data.card.keyword!==null&&data.card.keyword!==undefined)
             ? data.card.keyword.join(',') 
@@ -120,6 +119,8 @@ const database=()=>{
         await pool.connect();
 
         //先刪除所有資料 但不是資料表本身
+        //這個之後考慮做個優化 先將舊資料備份成另外一張資料表
+        //如果沒有問題再刪掉 如果有問題則立馬切回來
         await r.query('delete from cards_info');
 
         //接著再將所有資料加入 可以透過前面的addCard去加入
@@ -234,7 +235,52 @@ const database=()=>{
 
     }
 
-    return {selectCard,addCard,editCard,refreshCard,addSkill,selectSkill,editSkill}
+    //添加標籤系列
+    const addSeries = async(data)=>{
+        data.forEach(async (d)=>{
+            const params = {
+                typeId:{ type: sql.Int, value: d.data.typeId },
+                typeName:{type:sql.VarChar , value:d.data.typeName}
+            };
+    
+            const r = pool.request();
+    
+            await pool.connect();
+    
+            for (const [key, { type, value }] of Object.entries(params)) {
+                r.input(key, type, value);
+            }
+    
+            
+            await r.query('insert into func_type values(@typeId,@typeName)');
+        })
+    }
+
+    //刪除標籤系列
+    const deleteSeries=async(data)=>{
+        data.forEach(async (d)=>{
+            const params = {
+                typeId:{ type: sql.Int, value: d.data.typeId },
+            };
+    
+            const r = pool.request();
+    
+            await pool.connect();
+    
+            for (const [key, { type, value }] of Object.entries(params)) {
+                r.input(key, type, value);
+            }
+    
+            //避免參考跑掉 子表中的資料也以刪除處理
+            await r.query('delete from func_info where typeId = @typeId');
+    
+            //最後再刪除主表的
+            await r.query('delete from func_type where typeId = @typeId');
+        });
+    }
+
+
+    return {selectCard,addCard,editCard,refreshCard,addSkill,selectSkill,editSkill,addSeries,deleteSeries}
 }
 
 // 配置 multer
@@ -476,21 +522,40 @@ app.post('/func/get',async(req,res)=>{
 app.post('/func/save',async(req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
     let newFunc = req.body.func;
+    let moves = req.body.moves;
     let targetfile='./card/funcData.js';
     let targetfile2='./card/Card.js';
+
+    //原始card跟func
     let card=require(targetfile2);
+    let func_origin=require(targetfile);
 
     //抓舊資料
 
-    //先針對新資料作序位排定 並儲存更動
+    //先檢查是否要增修資料
+    if(moves!==undefined){
+        if(moves.filter((m)=>m.method==='addSeries').length!==0)
+            await database().addSeries(moves.filter((m)=>m.method==='addSeries'))
+        if(moves.filter((m)=>m.method==='deleteTag')!==0)
+            card=removeFunc(card,moves.filter((m)=>m.method==='deleteTag'));
+        if(moves.filter((m)=>m.method==='deleteSeries')){
+            //移除指定標籤或其種類
+            card=removeSeries(card,func_origin,moves.filter((m)=>m.method==='deleteSeries'));
+            await database().deleteSeries(moves.filter((m)=>m.method==='deleteSeries'));
+        }
+    }
+        
+
+
+    //針對新資料作序位排定 並儲存更動
     let modifyNum=modifyFunc(newFunc);
 
     //再依據更動來變更現有卡片資訊
     let newCard=JSON.stringify(modifyCard(modifyNum,card), null, 2);
     newFunc=JSON.stringify(newFunc, null, 2);
 
-    let insertFunc=`let funcData = ${newFunc} ;\nmodule.exports = funcData;`;
-    let insertCard=`let Card = ${newCard} ;\nmodule.exports = Card;`;
+    let insertFunc=`let funcData = ${newFunc};\nmodule.exports = funcData;`;
+    let insertCard=`let Card = ${newCard};\nmodule.exports = Card;`;
     
     let result={};
 
@@ -521,6 +586,43 @@ app.post('/func/save',async(req,res)=>{
 
     
 });
+
+//移除在前端中被移除的標籤
+//Card:要處理的資料 array:前端處理過的紀錄
+function removeFunc(Card,array){
+    array.forEach((a)=>{
+        Card.forEach(series => {
+            series.card.forEach((c)=>{
+                //過濾被移除的資料
+                c.tag=c.tag.filter(t=>t!==a.data.id)
+            })
+        });
+    })
+
+    return Card
+}
+
+//移除在前端中被移除的標籤種類
+//處理作法是底下所有的標籤都會刪除處理
+//Card:要處理的資料 array:前端處理過的紀錄
+function removeSeries(Card,func,array){
+    array.forEach((a)=>{
+        let targetSeries=func.find((f)=>f.typeId===a.data.typeId).data;
+
+        //找到所有需要被過濾的標籤id
+        let targetTags = new Set(targetSeries.map(item => item.id));
+
+        Card.forEach(series => {
+            series.card.forEach((c)=>{
+                //過濾被移除的資料
+                c.tag=c.tag.filter(t=>!targetTags.has(t));
+            })
+        });
+    })
+
+    
+    return Card;
+}
 
 
 //調整序位
