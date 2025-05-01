@@ -82,8 +82,6 @@ const database=()=>{
             ? data.card.keyword.join(',') 
             : null;
         
-        
-
         const params = {
             seriesId: { type: sql.Int, value: data.series },
             id: { type: sql.Int, value: data.card.id },
@@ -470,7 +468,18 @@ app.post('/card/add',async(req,res)=>{
     let data=req.body;
     await database().addCard(data);
 
-    res.send("OK");
+    let targetfile='./card/Card.js'
+    let existdata = require(targetfile);
+
+    let targetSeries=existdata.find((t)=>t.seriesId===data.series).card;
+    targetSeries.push(data.card);
+
+    const newData=`let Card = ${JSON.stringify(existdata, null, 2)} ;\nmodule.exports = Card;`;
+    fs.writeFileSync(targetfile,newData,()=>{
+        console.log("New data added");
+        
+    });
+    res.send(targetSeries);
 });
 
 app.post('/card/edit',async(req,res)=>{

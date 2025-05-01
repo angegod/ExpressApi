@@ -10,8 +10,8 @@ let Card = [
         "image": "/images/card/icon/1_1.png",
         "tag": [
           2,
-          19,
-          30
+          21,
+          32
         ],
         "instantEffect": [
           "自身技能 CD -2"
@@ -38,8 +38,8 @@ let Card = [
         "image": "/images/card/icon/1_2.png",
         "tag": [
           7,
-          19,
-          30
+          21,
+          32
         ],
         "instantEffect": [
           "自身技能 CD -2"
@@ -66,8 +66,8 @@ let Card = [
         "image": "/images/card/icon/1_3.png",
         "tag": [
           1,
-          19,
-          30
+          21,
+          32
         ],
         "instantEffect": [
           "自身技能 CD -2"
@@ -93,7 +93,7 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_4.png",
         "tag": [
-          20,
+          22,
           20
         ],
         "instantEffect": [
@@ -121,9 +121,9 @@ let Card = [
         "image": "/images/card/icon/1_5.png",
         "tag": [
           2,
-          16,
-          49,
-          58
+          18,
+          51,
+          60
         ],
         "instantEffect": [
           "該回合增加 2 連擊 (Combo)"
@@ -151,9 +151,9 @@ let Card = [
         "image": "/images/card/icon/1_6.png",
         "tag": [
           7,
-          16,
-          19,
-          45
+          18,
+          21,
+          47
         ],
         "instantEffect": [
           "該回合增加 2 連擊 (Combo)"
@@ -181,9 +181,9 @@ let Card = [
         "image": "/images/card/icon/1_7.png",
         "tag": [
           7,
-          16,
-          48,
-          58
+          18,
+          50,
+          60
         ],
         "instantEffect": [
           "該回合增加 2 連擊 (Combo)"
@@ -211,9 +211,9 @@ let Card = [
         "image": "/images/card/icon/1_8.png",
         "tag": [
           1,
-          16,
-          44,
-          59
+          18,
+          46,
+          61
         ],
         "instantEffect": [
           "該回合增加 2 連擊 (Combo)"
@@ -240,10 +240,10 @@ let Card = [
         "rarity": 2,
         "image": "/images/card/icon/1_9.png",
         "tag": [
-          16,
-          22,
-          30,
-          59
+          18,
+          24,
+          32,
+          61
         ],
         "instantEffect": [
           "該回合增加 2 連擊 (Combo)"
@@ -271,10 +271,10 @@ let Card = [
         "image": "/images/card/icon/1_10.png",
         "tag": [
           8,
-          19,
-          25,
-          51,
-          63
+          21,
+          27,
+          53,
+          66
         ],
         "instantEffect": [
           "自身進入 2 回合亢奮狀態"
@@ -302,9 +302,9 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_11.png",
         "tag": [
-          30,
-          50,
-          64
+          32,
+          52,
+          67
         ],
         "instantEffect": [
           "自身技能 CD -2"
@@ -331,8 +331,8 @@ let Card = [
         "image": "/images/card/icon/1_12.png",
         "tag": [
           3,
-          30,
-          66
+          32,
+          69
         ],
         "instantEffect": [
           "自身技能 CD -2"
@@ -358,9 +358,9 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_13.png",
         "tag": [
-          30,
-          48,
-          67
+          32,
+          50,
+          70
         ],
         "instantEffect": [
           "自身技能 CD -2"
@@ -388,9 +388,9 @@ let Card = [
         "tag": [
           3,
           9,
-          30,
-          35,
-          46
+          32,
+          37,
+          48
         ],
         "instantEffect": [
           "自身為龍類成員，自身技能 CD -3"
@@ -418,9 +418,9 @@ let Card = [
         "image": "/images/card/icon/1_15.png",
         "tag": [
           1,
-          30,
-          34,
-          55,
+          32,
+          36,
+          57,
           55
         ],
         "instantEffect": [
@@ -450,9 +450,9 @@ let Card = [
         "tag": [
           1,
           10,
-          19,
-          25,
-          45
+          21,
+          27,
+          47
         ],
         "instantEffect": [
           "自身進入 2 回合亢奮狀態"
@@ -482,8 +482,8 @@ let Card = [
         "tag": [
           1,
           11,
-          16,
-          53
+          18,
+          55
         ],
         "instantEffect": [
           "該回合增加 2 連擊 (Combo)"
@@ -511,9 +511,9 @@ let Card = [
         "image": "/images/card/icon/1_18.png",
         "tag": [
           7,
-          17,
-          56,
-          62
+          19,
+          58,
+          65
         ],
         "instantEffect": [
           "提升 100% 龍脈儀能量"
@@ -541,8 +541,8 @@ let Card = [
         "image": "/images/card/icon/1_19.png",
         "tag": [
           7,
-          18,
-          30
+          20,
+          32
         ],
         "instantEffect": [
           "發動攻擊前自身對敵方全體造成 500000000 點無屬性傷害 1 次"
@@ -570,10 +570,12 @@ let Card = [
         "tag": [
           2,
           12,
-          19,
-          25,
-          60,
-          69
+          21,
+          27,
+          63,
+          73,
+          76,
+          78
         ],
         "instantEffect": [
           "自身進入 2 回合亢奮狀態"
@@ -607,8 +609,8 @@ let Card = [
         "image": "/images/card/icon/1_21.png",
         "tag": [
           10,
-          19,
-          28
+          21,
+          30
         ],
         "instantEffect": [
           "解除自身休眠狀態"
@@ -635,8 +637,8 @@ let Card = [
         "image": "/images/card/icon/1_22.png",
         "tag": [
           3,
-          19,
-          29
+          21,
+          31
         ],
         "instantEffect": [
           "解除自身風壓狀態"
@@ -663,9 +665,9 @@ let Card = [
         "image": "/images/card/icon/1_23.png",
         "tag": [
           9,
-          14,
-          26,
-          60
+          15,
+          28,
+          63
         ],
         "instantEffect": [
           "解除自身疲憊狀態"
@@ -694,10 +696,11 @@ let Card = [
         "tag": [
           1,
           3,
-          19,
-          22,
+          21,
+          24,
           30,
-          30
+          32,
+          33
         ],
         "instantEffect": [
           "自身為人類成員，自身技能 CD -4"
@@ -728,10 +731,10 @@ let Card = [
         "tag": [
           2,
           10,
-          19,
-          30,
+          21,
           32,
-          38
+          34,
+          40
         ],
         "instantEffect": [
           "自身為神族成員，自身技能 CD -4"
@@ -766,9 +769,9 @@ let Card = [
           7,
           8,
           13,
-          19,
-          25,
-          47
+          21,
+          27,
+          49
         ],
         "instantEffect": [
           "自身增加 2 回合亢奮狀態"
@@ -798,10 +801,10 @@ let Card = [
         "image": "/images/card/icon/1_27.png",
         "tag": [
           1,
+          20,
           18,
-          18,
-          23,
-          58
+          25,
+          60
         ],
         "instantEffect": [
           "發動攻擊前自身對敵方全體造成 50000000 點無屬性傷害 10 次"
@@ -829,9 +832,12 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_28.png",
         "tag": [
-          21,
-          66,
-          69
+          23,
+          69,
+          69,
+          74,
+          75,
+          78
         ],
         "instantEffect": [
           "完全回復生命力"
@@ -863,8 +869,8 @@ let Card = [
         "image": "/images/card/icon/1_29.png",
         "tag": [
           3,
-          17,
-          52,
+          19,
+          54,
           54
         ],
         "instantEffect": [
@@ -892,8 +898,8 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_30.png",
         "tag": [
-          16,
-          24,
+          18,
+          26,
           24,
           26
         ],
@@ -923,10 +929,13 @@ let Card = [
         "image": "/images/card/icon/1_31.png",
         "tag": [
           10,
-          19,
-          42,
-          60,
-          69
+          21,
+          32,
+          44,
+          63,
+          75,
+          77,
+          78
         ],
         "instantEffect": [
           "自身為光屬性成員，自身技能 CD -4"
@@ -959,11 +968,11 @@ let Card = [
         "image": "/images/card/icon/1_32.png",
         "tag": [
           3,
-          19,
-          23,
+          21,
           25,
-          50,
-          70
+          25,
+          52,
+          80
         ],
         "instantEffect": [
           "自身增加 2 回合亢奮狀態"
@@ -992,9 +1001,9 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_33.png",
         "tag": [
-          18,
-          19,
-          57
+          20,
+          21,
+          59
         ],
         "instantEffect": [
           "自身發動攻擊前對敵方造成 10000000 點光屬性傷害 10 次"
@@ -1021,10 +1030,13 @@ let Card = [
         "image": "/images/card/icon/1_34.png",
         "tag": [
           2,
-          15,
-          19,
-          41,
-          69
+          16,
+          21,
+          32,
+          43,
+          74,
+          77,
+          79
         ],
         "instantEffect": [
           "自身為木屬性成員，自身技能 CD -4"
@@ -1056,10 +1068,10 @@ let Card = [
         "rarity": 1,
         "image": "/images/card/icon/1_35.png",
         "tag": [
-          16,
-          19,
-          49,
-          68
+          18,
+          21,
+          51,
+          71
         ],
         "instantEffect": [
           "增加 3 連擊 (Combo)"
@@ -1079,6 +1091,104 @@ let Card = [
           ""
         ],
         "PointEnter": 4
+      },
+      {
+        "id": 36,
+        "name": "少女們與巧克力",
+        "rarity": 1,
+        "image": "/images/card/icon/1_36.png",
+        "tag": [
+          21,
+          32,
+          62
+        ],
+        "instantEffect": [
+          "解除自身被封鎖主動技能 ( 此技能無視封鎖技能 )"
+        ],
+        "comboEffect": [
+          "自身攻擊力提升 100%"
+        ],
+        "roundEffect": [
+          "自身技能 CD -2"
+        ],
+        "PointMax": 4,
+        "PointConsume": 2,
+        "PointGet": 2,
+        "fullimage": "/images/card/image/1_36.png",
+        "keyword": [
+          ""
+        ],
+        "PointEnter": 4
+      },
+      {
+        "id": 37,
+        "name": "大魔女的加護",
+        "rarity": 2,
+        "image": "/images/card/icon/1_37.png",
+        "tag": [
+          18,
+          32,
+          45,
+          60,
+          61,
+          75,
+          76,
+          79
+        ],
+        "instantEffect": [
+          "自身為暗屬性成員，自身技能 CD -4"
+        ],
+        "comboEffect": [
+          "回合結束時，將單數橫行的符石轉化為暗強化符石，將雙數橫行的符石轉化為光強化符石",
+          "自身攻擊力提升 100%"
+        ],
+        "roundEffect": [
+          "增加 10 連擊 (Combo)",
+          "無視「燃燒」",
+          "無視「黏腐」"
+        ],
+        "PointMax": 6,
+        "PointConsume": 3,
+        "PointGet": 2,
+        "fullimage": "/images/card/image/1_37.png",
+        "keyword": [
+          "大魔女"
+        ],
+        "PointEnter": 6
+      },
+      {
+        "id": 38,
+        "name": "以炮響拉開帷幕",
+        "rarity": 3,
+        "image": "/images/card/icon/1_38.png",
+        "tag": [
+          11,
+          14,
+          17,
+          21,
+          27,
+          48
+        ],
+        "instantEffect": [
+          "自身增加 2 回合亢奮狀態"
+        ],
+        "comboEffect": [
+          "自身攻擊力提升 150%",
+          "自身無視「首消組數屬性符石盾」"
+        ],
+        "roundEffect": [
+          "自身以 10% 攻擊力追打木屬性攻擊 20 次",
+          "自身無視「反首消符石盾」",
+          "自身無視「全版消除盾」"
+        ],
+        "PointMax": 8,
+        "PointConsume": 2,
+        "PointGet": 2,
+        "fullimage": "/images/card/image/1_38.png",
+        "keyword": [
+          "砲響牌"
+        ],
+        "PointEnter": 8
       }
     ]
   }

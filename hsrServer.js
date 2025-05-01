@@ -96,30 +96,38 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
     const request = await fetch(`https://api.mihomo.me/sr_info_parsed/${userId}?lang=cht`);
     const data = await request.json();
 
-    //console.log(data);
     
-    let taregtChar=data.characters.find((c)=>Number(c.id)===charID);
+    let targetChar=data.characters.find((c)=>Number(c.id)===charID);
     //如果找不到該腳色 則回傳
-    if(taregtChar===undefined)
+    if(targetChar===undefined)
         res.send('800');
-    else if(taregtChar.relics===undefined)
+    else if(targetChar.relics===undefined)
         res.send('800');
     else{
         //如果找不到指定遺器 也回傳
-        let targetRelic=taregtChar.relics.find((r)=>r.type===Number(partsIndex));
-        if(targetRelic===undefined)
+        //let targetRelic=taregtChar.relics.find((r)=>r.type===Number(partsIndex));
+        let targetRelic=targetChar.relics;
+        if(targetRelic===undefined)//如果該腳色沒有任何遺器
             res.send('801');
-        else if(targetRelic.rarity!==5)
+        else{
+            targetRelic = targetRelic.filter((r)=>r.rarity ===5 && r.level ===15);
+            if(targetRelic.length === 0){
+                res.send("804")
+            }else{
+                res.send(targetRelic);
+            }
+            
+        }
+
+        /*else if(targetRelic.rarity!==5)
             res.send('803');
         else if(targetRelic.level!==15)
             res.send('802');
         else
-            res.send(targetRelic);
+            res.send(targetRelic);*/
     }
-
-    
-
 });
+
 
 app.listen(5000, () => {
     console.log(`Server is running on port 5000.`);
