@@ -1151,6 +1151,10 @@ let Card = [
         "PointConsume": 3,
         "PointGet": 2,
         "fullimage": "/images/card/image/1_37.png",
+        "spread": {
+          "image": "/images/card/spread/1_37.png",
+          "index": 1
+        },
         "keyword": [
           "大魔女"
         ],
@@ -1189,6 +1193,107 @@ let Card = [
           "砲響牌"
         ],
         "PointEnter": 8
+      },
+      {
+        "id": 39,
+        "name": "守護的羽翼",
+        "rarity": 2,
+        "image": "/images/card/icon/1_39.png",
+        "tag": [
+          10,
+          18,
+          21,
+          32,
+          60
+        ],
+        "instantEffect": [
+          "該回合增加 4 連擊 (Combo)"
+        ],
+        "comboEffect": [
+          "自身攻擊力提升 150%",
+          "自身無視「攻前盾」"
+        ],
+        "roundEffect": [
+          "無視「燃燒」",
+          "自身技能 CD -1"
+        ],
+        "PointMax": 6,
+        "PointConsume": 2,
+        "PointGet": 2,
+        "fullimage": "/images/card/image/1_39.png",
+        "keyword": [
+          "卡西爾"
+        ],
+        "PointEnter": 6
+      },
+      {
+        "id": 40,
+        "name": "彩球競逐",
+        "rarity": 1,
+        "image": "/images/card/icon/1_40.png",
+        "tag": [
+          9,
+          15,
+          21,
+          27
+        ],
+        "instantEffect": [
+          "自身進入 1 回合亢奮狀態"
+        ],
+        "comboEffect": [
+          "自身攻擊力提升 100%"
+        ],
+        "roundEffect": [
+          "自身無視「指定連擊法印」",
+          "自身無視「符石連擊零化」"
+        ],
+        "PointMax": 4,
+        "PointConsume": 1,
+        "PointGet": 2,
+        "fullimage": "/images/card/image/1_40.png",
+        "keyword": [
+          ""
+        ],
+        "PointEnter": 4
+      },
+      {
+        "id": 41,
+        "name": "無畏航路",
+        "rarity": 2,
+        "image": "/images/card/icon/1_41.png",
+        "tag": [
+          16,
+          25,
+          32,
+          42,
+          63,
+          73,
+          77,
+          79
+        ],
+        "instantEffect": [
+          "自身為火屬性成員，自身技能 CD -4"
+        ],
+        "comboEffect": [
+          "回合結束時，將單數橫行的符石轉化為火強化符石，將雙數橫行的符石轉化為心強化符石",
+          "自身攻擊無視「起結有序」"
+        ],
+        "roundEffect": [
+          "隊伍不會被封鎖主動技能",
+          "迴避每個敵人的首次攻擊"
+        ],
+        "PointMax": 6,
+        "PointConsume": 3,
+        "PointGet": 2,
+        "fullimage": "/images/card/image/1_41.png",
+        "spread": {
+          "image": "/images/card/spread/1_41.png",
+          "index": 1
+        },
+        "keyword": [
+          "德古拉"
+        ],
+        "PointEnter": 6
       }
     ]
   }

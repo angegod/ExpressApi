@@ -96,13 +96,19 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
     const request = await fetch(`https://api.mihomo.me/sr_info_parsed/${userId}?lang=cht`);
     const data = await request.json();
 
-    
+    if(data.characters===undefined){
+        res.send("900");
+        return;
+    }
+        
+
     let targetChar=data.characters.find((c)=>Number(c.id)===charID);
+    
     //如果找不到該腳色 則回傳
     if(targetChar===undefined)
         res.send('800');
     else if(targetChar.relics===undefined)
-        res.send('800');
+        res.send('801');
     else{
         //如果找不到指定遺器 也回傳
         //let targetRelic=taregtChar.relics.find((r)=>r.type===Number(partsIndex));

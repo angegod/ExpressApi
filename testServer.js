@@ -100,6 +100,8 @@ const database=()=>{
             spread:{type:sql.NVarChar,value:(data.card.spread===undefined)?null:data.card.spread.image},
             spread_index:{type:sql.Int,value:(data.card.spread===undefined)?null:data.card.spread.index}
         };
+
+        console.log(params);
         
         const r = pool.request();
 
