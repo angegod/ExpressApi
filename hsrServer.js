@@ -34,8 +34,7 @@ app.use(bodyParser.json()); //Handles JSON requests
 
 //如果是預檢請求，則跳過頻率檢測
 app.use(function (req, res, next) {
-    //res.header("Access-Control-Allow-Origin", "*");
-    
+
     if (req.method === 'OPTIONS') {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -124,13 +123,76 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
             }
             
         }
+    }
+});
 
-        /*else if(targetRelic.rarity!==5)
-            res.send('803');
-        else if(targetRelic.level!==15)
-            res.send('802');
-        else
-            res.send(targetRelic);*/
+
+app.post("/artifact/get",cors(corsOptions),async(req,res)=>{
+    
+    const origin = req.headers.origin;
+    const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
+    
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    let senddata = req.body;
+    let userId=senddata.uid;
+    let charID=senddata.charID;
+
+    if (!/^\d+$/.test(userId)) { // 僅允許數字
+        return res.status(400).send({ error: "Invalid user ID" });
+    }
+
+    let data;
+    try {
+        //提供標頭 避免被判定成bot
+        const request = await fetch(`https://enka.network/api/uid/${userId}`,{
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+                'Accept': 'application/json'
+            }
+        });
+        data = await request.json();
+    } catch (err) {
+        console.error("Fetch failed:", err);
+        return res.status(500).send("Fetch Error");
+    }
+
+    //如果該UID沒有任何資訊
+    if(data.playerInfo===undefined){
+        res.send("900");
+        return;
+    }
+
+    //找不到腳色
+    if(!data.avatarInfoList)
+        res.send('800');
+
+    let targetChar=data.avatarInfoList.find((c)=>Number(c.avatarId)===Number(charID));
+    //如果找不到該腳色 則回傳
+    if(targetChar===undefined)
+        res.send('800');
+    else if(targetChar.equipList===undefined)
+        res.send('801');
+    else{
+        //如果找不到指定遺器 也回傳
+        let targetRelic=targetChar.equipList;
+        //過濾掉武器
+        targetRelic = targetRelic.filter((r)=>r.weapon === undefined);
+        if(targetRelic===undefined)//如果該腳色沒有任何聖遺物
+            res.send('801');
+        else{
+            targetRelic = targetRelic.filter((r)=>r.flat.rankLevel === 5 && r.reliquary.level === 21);
+            if(targetRelic.length === 0){
+                res.send("804")
+            }else{
+                res.send(targetRelic);
+            }
+            
+        }
     }
 });
 
