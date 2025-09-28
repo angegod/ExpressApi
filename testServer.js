@@ -53,6 +53,19 @@ const database=()=>{
 
                 if(s.tag===null)
                     s.tag=[];
+
+                s.comboTag=s.comboTag.split(',');
+                s.comboTag=s.comboTag.map((num)=>num=parseInt(num));
+
+                if(s.comboTag === null)
+                    s.comboTag = [];
+
+                s.roundTag=s.roundTag.split(',');
+                s.roundTag=s.roundTag.map((num)=>num=parseInt(num));
+
+                if(s.roundTag === null)
+                    s.roundTag = [];
+                
                 
                 if(s.spread===null)
                     s.spread=undefined;
@@ -70,6 +83,7 @@ const database=()=>{
                 delete s.seriesId;
                 s.PointEnter=s.PointMax;
             });
+
             let func= require('./card/funcData.js');
             res.send({card:sqlresult,func:func});
         });
@@ -77,6 +91,8 @@ const database=()=>{
           
         
     };
+
+    //新增卡片
     const addCard = async (data)=>{
         const Insertkeyword = (data.card.keyword!==null&&data.card.keyword!==undefined)
             ? data.card.keyword.join(',') 
@@ -88,7 +104,9 @@ const database=()=>{
             name: { type: sql.VarChar, value: data.card.name },
             rarity: { type: sql.Int, value: data.card.rarity },
             image: { type: sql.VarChar, value: data.card.image },
-            tag: { type: sql.NVarChar, value: data.card.tag.join(',') },
+            tag: { type: sql.NVarChar, value: (data.card.tag ?? []).join(',') },
+            comboTag : {type: sql.NVarChar, value: (data.card.comboTag ?? []).join(',')},
+            roundTag : {type: sql.NVarChar, value: (data.card.roundTag ?? []).join(',')},
             instantEffect: { type: sql.NVarChar, value: data.card.instantEffect.join(',') },
             comboEffect: { type: sql.NVarChar, value: data.card.comboEffect.join(',') },
             roundEffect: { type: sql.NVarChar, value: data.card.roundEffect.join(',') },
@@ -101,7 +119,6 @@ const database=()=>{
             spread_index:{type:sql.Int,value:(data.card.spread===undefined)?null:data.card.spread.index}
         };
 
-        console.log(params);
         
         const r = pool.request();
 
@@ -110,9 +127,10 @@ const database=()=>{
         for (const [key, { type, value }] of Object.entries(params)) {
             r.input(key, type, value);
         }
-        await r.query('insert into cards_info values(@seriesId,@id,@name,@rarity,@image,@tag,@instantEffect,@comboEffect,@roundEffect,@PointMax,@PointConsume,@PointGet,@fullimage,@spread,@spread_index,@keyword)');
+        await r.query('insert into cards_info values(@seriesId,@id,@name,@rarity,@image,@instantEffect,@comboEffect,@roundEffect,@PointMax,@PointConsume,@PointGet,@fullimage,@spread,@spread_index,@keyword,@tag,@roundTag,@comboTag)');
     }
 
+    //編輯卡片
     const editCard = async(res,data,seriesIndex)=>{
         const r = pool.request();
 
@@ -138,6 +156,25 @@ const database=()=>{
 
         res.send('資料已儲存!!');
 
+    }
+
+    const deleteCard = async(data)=>{
+        const params = {
+            seriesId: { type: sql.Int, value: data.series },
+            id: { type: sql.Int, value: data.id },
+        };
+
+        const r = pool.request();
+    
+        await pool.connect();
+
+        for (const [key, { type, value }] of Object.entries(params)) {
+            r.input(key, type, value);
+        }
+
+        //避免參考跑掉 子表中的資料也以刪除處理
+        await r.query('delete from cards_info where id = @id and seriesId = @seriesId');
+    
     }
 
     const refreshCard = async(data)=>{
@@ -279,20 +316,22 @@ const database=()=>{
         });
     }
 
+    
 
-    return {selectCard,addCard,editCard,refreshCard,addSkill,selectSkill,editSkill,addSeries,deleteSeries}
+
+    return {selectCard,addCard,editCard,deleteCard,refreshCard,addSkill,selectSkill,editSkill,addSeries,deleteSeries}
 }
 
 // 配置 multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const absolutePath='C:/project/vue/vuepage/public/images/card/icon';
+        const absolutePath='C:/project/vue/TestNuxtPage/public/images/card/icon';
         
         cb(null, absolutePath); // 设置文件存储的目录
     },
     filename: function (req, file, cb) {
         const customFileName = file.originalname.split('.')[0]; 
-        const baseDir = path.join('C:/project/htdocs/vue/vuepage/public/images/card/icon');
+        const baseDir = path.join('C:/project/vue/TestNuxtPage/public/images/card/icon');
         const finalPath = path.join(baseDir, customFileName + '.png');
         const normalizedPath = path.normalize(finalPath);
 
@@ -324,7 +363,7 @@ app.post('/card/icon',async(req, res,next) => {
         if (err) {
           return res.status(500).json({ message: 'Upload failed', error: err.message });
         }
-        const absolutePath='C:/project/vue/vuepage/public/images/card/icon'
+        const absolutePath='C:/project/vue/TestNuxtPage/public/images/card/icon'
         const oldPath = absolutePath +'/'+oldName;
         const newPath = absolutePath +'/'+newName;
   
@@ -346,13 +385,13 @@ app.post('/card/icon',async(req, res,next) => {
 
 const storage2 = multer.diskStorage({
     destination: function (req, file, cb) {
-        const absolutePath='C:/project/vue/vuepage/public/images/card/image';
+        const absolutePath='C:/project/vue/TestNuxtPage/public/images/card/image';
         
         cb(null, absolutePath); // 设置文件存储的目录
     },
     filename: function (req, file, cb) {
         const customFileName = file.originalname.split('.')[0]; 
-        const baseDir = path.join('C:/project/vue/vuepage/public/images/card/image');
+        const baseDir = path.join('C:/project/vue/TestNuxtPage/public/images/card/image');
         const finalPath = path.join(baseDir, customFileName + '.png');
         const normalizedPath = path.normalize(finalPath);
 
@@ -383,7 +422,7 @@ app.post('/card/image',async(req, res,next) => {
         if (err) {
           return res.status(500).json({ message: 'Upload failed', error: err.message });
         }
-        const absolutePath='C:/project/vue/vuepage/public/images/card/image'
+        const absolutePath='C:/project/vue/TestNuxtPage/public/images/card/image'
         const oldPath = absolutePath +'/'+oldName;
         const newPath = absolutePath +'/'+newName;
   
@@ -402,13 +441,13 @@ app.post('/card/image',async(req, res,next) => {
 
 const storage3 = multer.diskStorage({
     destination: function (req, file, cb) {
-        const absolutePath='C:/project/vue/vuepage/public/images/card/spread';
+        const absolutePath='C:/project/vue/TestNuxtPage/public/images/card/spread';
         
         cb(null, absolutePath); // 设置文件存储的目录
     },
     filename: function (req, file, cb) {
         const customFileName = file.originalname.split('.')[0]; 
-        const baseDir = path.join('C:/project/vue/vuepage/public/images/card/spread');
+        const baseDir = path.join('C:/project/vue/TestNuxtPage/public/images/card/spread');
         const finalPath = path.join(baseDir, customFileName + '.png');
         const normalizedPath = path.normalize(finalPath);
 
@@ -439,7 +478,7 @@ app.post('/card/spread',async(req, res,next) => {
         if (err) {
           return res.status(500).json({ message: 'Upload failed', error: err.message });
         }
-        const absolutePath='C:/project/vue/vuepage/public/images/card/spread'
+        const absolutePath='C:/project/vue/TestNuxtPage/public/images/card/spread'
         const oldPath = absolutePath +'/'+oldName;
         const newPath = absolutePath +'/'+newName;
   
@@ -460,7 +499,30 @@ app.post('/card/spread',async(req, res,next) => {
 //獲得所有時光牌資訊 需指定系列
 app.post('/card/get',async (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
+
+
     await database().selectCard(res,req.body.get);
+});
+
+//刪除指定時光牌
+app.post('/card/delete',async(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    let data = req.body;
+    let targetfile='./card/Card.js'
+    let existdata = require(targetfile);
+
+    let targetSeries=existdata.find((t)=>t.seriesId===data.series).card;
+    targetSeries = targetSeries.filter((c)=>c.id!==req.body.id);
+    existdata.find((t)=>t.seriesId===data.series).card = targetSeries;
+
+    const newData=`let Card = ${JSON.stringify(existdata, null, 2)} ;\nmodule.exports = Card;`;
+    fs.writeFileSync(targetfile,newData,()=>{
+        console.log("New data added");
+    });
+    
+    
+    await database().deleteCard(data)
+    .then(()=>res.send("delete Card"));
 
 });
 
@@ -485,14 +547,12 @@ app.post('/card/add',async(req,res)=>{
 });
 
 app.post('/card/edit',async(req,res)=>{
-    //res.header("Access-Control-Allow-Origin", "*");
     const getSeriesId = req.body.getId;
     let targetfile='./card/Card.js'
 
     
     let existdata = require(targetfile);
     existdata.find((t)=>t.seriesId===getSeriesId).card=req.body.newData;
-    console.log(existdata);
 
     const newData=`let Card = ${JSON.stringify(existdata, null, 2)} ;\nmodule.exports = Card;`;
 
@@ -526,8 +586,6 @@ app.post('/func/get',async(req,res)=>{
     }catch{
         res.send("發生錯誤");
     }
-
-    
 })
 
 app.post('/func/save',async(req,res)=>{
@@ -605,7 +663,11 @@ function removeFunc(Card,array){
         Card.forEach(series => {
             series.card.forEach((c)=>{
                 //過濾被移除的資料
-                c.tag=c.tag.filter(t=>t!==a.data.id)
+                c.tag=c.tag.filter(t=>t!==a.data.id);
+
+                c.comboTag = c.comboTag.filter(t=>t!==a.data.id);
+
+                c.roundTag = c.roundTag.filter(t=>t!==a.data.id);
             })
         });
     })
@@ -627,6 +689,8 @@ function removeSeries(Card,func,array){
             series.card.forEach((c)=>{
                 //過濾被移除的資料
                 c.tag=c.tag.filter(t=>!targetTags.has(t));
+                c.comboTag=c.comboTag.filter(t=>!targetTags.has(t));
+                c.roundTag=c.roundTag.filter(t=>!targetTags.has(t));
             })
         });
     })
@@ -651,23 +715,23 @@ function modifyFunc(funcData){
             }
         })
     });
+    console.log(array);
 
     return array;
 }
 
-//調整卡片技能標籤 避免跑掉
-function modifyCard(array,Card){
+function modifyCard(array, Card) {
+    // 建立一個快速查表 Map（避免鏈式替換問題）
+    const replaceMap = new Map(array);
+
     Card.forEach(series => {
-        series.card.forEach((c)=>{
-            let modfiedNum=[];//避免二度修改
-            array.forEach((m)=>{
-                //如果卡片標籤有自更動過編號 且先前沒有更動紀錄
-                if(c.tag.includes(m[0])&&!modfiedNum.includes(m[0])){
-                    c.tag[c.tag.findIndex((t)=>t===m[0])]=m[1];
-                    modfiedNum.push(m[1]);//告訴系統說這個數字已經更改過了
+        series.card.forEach(c => {
+            ["tag", "comboTag", "roundTag"].forEach(key => {
+                if (Array.isArray(c[key])) {
+                    c[key] = c[key].map(val => replaceMap.get(val) ?? val);
                 }
-            })
-        })
+            });
+        });
     });
 
     return Card;
