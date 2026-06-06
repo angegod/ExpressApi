@@ -96,8 +96,7 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
     const data = await request.json();
 
     if(data.characters===undefined){
-        res.send("900");
-        return;
+        return res.send("900");
     }
         
 
@@ -105,21 +104,21 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
     
     //如果找不到該腳色 則回傳
     if(targetChar===undefined)
-        res.send('800');
+        return res.send('800');
     else if(targetChar.relics===undefined)
-        res.send('801');
+        return res.send('801');
     else{
         //如果找不到指定遺器 也回傳
         //let targetRelic=taregtChar.relics.find((r)=>r.type===Number(partsIndex));
         let targetRelic=targetChar.relics;
         if(targetRelic===undefined)//如果該腳色沒有任何遺器
-            res.send('801');
+            return res.send('801');
         else{
             targetRelic = targetRelic.filter((r)=>r.rarity ===5 && r.level ===15);
             if(targetRelic.length === 0){
-                res.send("804")
+                return res.send("804")
             }else{
-                res.send(targetRelic);
+                return res.send(targetRelic);
             }
             
         }
@@ -163,33 +162,31 @@ app.post("/artifact/get",cors(corsOptions),async(req,res)=>{
 
     //如果該UID沒有任何資訊
     if(data.playerInfo===undefined){
-        res.send("900");
-        return;
+        return res.send("900");
     }
 
     //找不到腳色
-    if(!data.avatarInfoList)
-        res.send('800');
-
+    if(!data.avatarInfoList||data.avatarInfoList===undefined||data.avatarInfoList.length===0)
+        return res.send('800');
     let targetChar=data.avatarInfoList.find((c)=>Number(c.avatarId)===Number(charID));
     //如果找不到該腳色 則回傳
     if(targetChar===undefined)
-        res.send('800');
+        return res.send('800');
     else if(targetChar.equipList===undefined)
-        res.send('801');
+        return res.send('801');
     else{
         //如果找不到指定遺器 也回傳
         let targetRelic=targetChar.equipList;
         //過濾掉武器
         targetRelic = targetRelic.filter((r)=>r.weapon === undefined);
         if(targetRelic===undefined)//如果該腳色沒有任何聖遺物
-            res.send('801');
+            return res.send('801');
         else{
             targetRelic = targetRelic.filter((r)=>r.flat.rankLevel === 5 && r.reliquary.level === 21);
             if(targetRelic.length === 0){
-                res.send("804")
+                return res.send("804")
             }else{
-                res.send(targetRelic);
+                return res.send(targetRelic);
             }
             
         }
