@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors=require('cors');
 const rateLimit = require('express-rate-limit');
+const { default: axios } = require("axios");
 
 const app = express();
 
@@ -70,7 +71,7 @@ app.get("/get/:uid",async (req,res)=>{
   
 });
 
-app.post("/relic/get",cors(corsOptions),async(req,res)=>{
+app.post("/relic2/get",cors(corsOptions),async(req,res)=>{
     
     const origin = req.headers.origin;
     const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
@@ -101,7 +102,6 @@ app.post("/relic/get",cors(corsOptions),async(req,res)=>{
         
 
     let targetChar=data.characters.find((c)=>Number(c.id)===charID);
-    
     //如果找不到該腳色 則回傳
     if(targetChar===undefined)
         return res.send('800');
@@ -155,6 +155,7 @@ app.post("/artifact/get",cors(corsOptions),async(req,res)=>{
             }
         });
         data = await request.json();
+
     } catch (err) {
         console.error("Fetch failed:", err);
         return res.status(500).send("Fetch Error");
@@ -164,6 +165,8 @@ app.post("/artifact/get",cors(corsOptions),async(req,res)=>{
     if(data.playerInfo===undefined){
         return res.send("900");
     }
+
+    console.log(data.avatarInfoList);
 
     //找不到腳色
     if(!data.avatarInfoList||data.avatarInfoList===undefined||data.avatarInfoList.length===0)
@@ -191,6 +194,39 @@ app.post("/artifact/get",cors(corsOptions),async(req,res)=>{
             
         }
     }
+});
+
+app.post("/relic/get",cors(corsOptions),async(req,res)=>{
+    const origin = req.headers.origin;
+    const allowedOrigins = ['https://angegod.github.io', 'http://localhost:3000'];
+    
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    const charId = req.body.charId;
+
+    //先撈資料
+    const request = await axios.get(`https://enka.network/api/hsr/uid/${req.body.uid}`);
+    const data = await request.data;
+
+    
+
+    if(request.status!==200 )
+    {
+        return res.send('900');
+    }
+    else{
+        const targetChar=data.detailInfo.avatarDetailList.find(c=> c.avatarId=== Number(charId));
+
+        if(targetChar===undefined)
+            return res.send('800');
+
+        return res.send(targetChar.relicList);
+    }
+    
 });
 
 

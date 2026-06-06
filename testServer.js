@@ -50,22 +50,23 @@ const database=()=>{
                 //將資料處理成統一格式
                 s.tag=s.tag.split(',');
                 s.tag=s.tag.map((num)=>num=parseInt(num));
+                s.tag=s.tag.filter((t)=>!isNaN(t));
 
                 if(s.tag===null)
                     s.tag=[];
 
                 s.comboTag=s.comboTag.split(',');
                 s.comboTag=s.comboTag.map((num)=>num=parseInt(num));
+                s.comboTag=s.comboTag.filter((t)=>!isNaN(t));
 
                 if(s.comboTag === null)
                     s.comboTag = [];
 
                 s.roundTag=s.roundTag.split(',');
                 s.roundTag=s.roundTag.map((num)=>num=parseInt(num));
-
+                s.roundTag=s.roundTag.filter((t)=>!isNaN(t));
                 if(s.roundTag === null)
                     s.roundTag = [];
-                
                 
                 if(s.spread===null)
                     s.spread=undefined;
