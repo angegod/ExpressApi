@@ -11,12 +11,6 @@
     "node": ">=20 <21",
     "npm": ">=10 <11"
   },
-  "overrides": {
-    "@azure/core-auth": "1.8.0"
-  },
-  "resolutions": {
-    "@azure/core-auth": "1.8.0"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
