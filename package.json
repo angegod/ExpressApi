@@ -11,6 +11,20 @@
     "node": ">=20 <21",
     "npm": ">=10 <11"
   },
+  "overrides": {
+    "@azure/core-auth": "1.8.0",
+    "@azure/core-util": "1.10.0",
+    "@azure/core-client": "1.9.2",
+    "@azure/core-rest-pipeline": "1.17.0",
+    "@azure/identity": "4.4.1"
+  },
+  "resolutions": {
+    "@azure/core-auth": "1.8.0",
+    "@azure/core-util": "1.10.0",
+    "@azure/core-client": "1.9.2",
+    "@azure/core-rest-pipeline": "1.17.0",
+    "@azure/identity": "4.4.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
